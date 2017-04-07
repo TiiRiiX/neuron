@@ -4,3 +4,9 @@ c:\users\manzick\documents\visual studio 2017\Projects\Nuron\Nuron\bin\Debug\Nur
 c:\users\manzick\documents\visual studio 2017\Projects\Nuron\Nuron\obj\Debug\Nuron.csprojResolveAssemblyReference.cache
 c:\users\manzick\documents\visual studio 2017\Projects\Nuron\Nuron\obj\Debug\Nuron.exe
 c:\users\manzick\documents\visual studio 2017\Projects\Nuron\Nuron\obj\Debug\Nuron.pdb
+Z:\repo\neuron\Nuron\bin\Debug\Nuron.exe.config
+Z:\repo\neuron\Nuron\bin\Debug\Nuron.exe
+Z:\repo\neuron\Nuron\bin\Debug\Nuron.pdb
+Z:\repo\neuron\Nuron\obj\Debug\Nuron.csprojResolveAssemblyReference.cache
+Z:\repo\neuron\Nuron\obj\Debug\Nuron.exe
+Z:\repo\neuron\Nuron\obj\Debug\Nuron.pdb

@@ -35,7 +35,7 @@ namespace Nuron
                     Color color = Color.FromArgb(memory[i, j], memory[i, j], memory[i, j]);
                     memoryBmp.SetPixel(i, j, color);
                 }
-            using (FileStream fs = new FileStream($"C:/Users/manzick/Project/Neuro/Memory/{name}.png", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
+            using (FileStream fs = new FileStream($"{Program.mainPath}/Memory/{name}.png", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
                 memoryBmp.Save(fs, ImageFormat.Png);
         }
 
@@ -47,7 +47,7 @@ namespace Nuron
         {
             try {
                 Bitmap memoryBmp;
-                using (FileStream fs = new FileStream($"C:/Users/manzick/Project/Neuro/Memory/{name}.png", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
+                using (FileStream fs = new FileStream($"{Program.mainPath}/Memory/{name}.png", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
                     memoryBmp = new Bitmap(fs);
                 for (int i = 0; i < 30; i++)
                     for (int j = 0; j < 30; j++) {
@@ -63,9 +63,7 @@ namespace Nuron
     public class Program
     {
         public static Neuron[] Neuro_Web = new Neuron[10];
-        static Neuron maxNeo;
-        static int Success = 0;
-        static int Fall = 0;
+        public static string mainPath = Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().IndexOf("neuron") + 6);
         public static List<string> ListOfAdress = new List<string>();
 
         /// <summary>
@@ -73,10 +71,10 @@ namespace Nuron
         /// </summary>
         public static void RefreshFiles()
         {
-            string[] files = Directory.GetFiles("C:/Users/manzick/Project/Neuro");
+            string[] files = Directory.GetFiles($"{mainPath}/Kappa");
             ListOfAdress.Clear();
             for (int i = 0; i < files.Length; i++)
-                ListOfAdress.Add(files[i].Substring(files[i].IndexOf("Neuro") + 6));
+                ListOfAdress.Add(files[i].Substring(files[i].IndexOf("Kappa") + 6));
         }
 
         /// <summary>
@@ -113,7 +111,7 @@ namespace Nuron
                 for (int i = 0; i < 30; i++)
                     for (int j = 0; j < 30; j++) {
                         Color picPixel = bmp.GetPixel(j, i);
-                        if (Math.Abs(picPixel.R - neo.memory[j, i]) < 50 && (picPixel.R < 250 && picPixel.G < 250 && picPixel.B < 250)) {
+                        if (Math.Abs(picPixel.R - neo.memory[j, i]) < 150 && (picPixel.R < 250 && picPixel.G < 250 && picPixel.B < 250)) {
                             neo.output++;
                         }
                     }
@@ -145,16 +143,16 @@ namespace Nuron
                 Console.Write("Ввод: ");
                 choose = int.Parse(Console.ReadLine());
                 if (choose == -1) return;
-                Neuron newAnalize = NeuroAnalize($"C:/Users/manzick/Project/Neuro/{ListOfAdress[choose]}");
+                Neuron newAnalize = NeuroAnalize($"{mainPath}/Kappa/{ListOfAdress[choose]}");
                 Console.WriteLine($"Сеть решила, что это {newAnalize.name}");
                 Console.WriteLine("Верно? (да +, нет -)");
                 string needToCorrect = Console.ReadLine();
                 if (needToCorrect == "-") {
                     Console.WriteLine("Введите верный ответ:");
                     string correctAnswer = Console.ReadLine();
-                    CorrectMemory($"C:/Users/manzick/Project/Neuro/{ListOfAdress[choose]}", correctAnswer);
+                    CorrectMemory($"{mainPath}/Kappa/{ListOfAdress[choose]}", correctAnswer);
                 } else
-                    CorrectMemory($"C:/Users/manzick/Project/Neuro/{ListOfAdress[choose]}", newAnalize.name);
+                    CorrectMemory($"{mainPath}/Kappa/{ListOfAdress[choose]}", newAnalize.name);
             }
         }
     }
